@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "gssp-demo-test-01-27-apr".toLowerCase().trim()
-        DOCKER_IMAGE = "chaitanyapandeygspann/${APP_NAME}"
+        APP_NAME = "".toLowerCase().trim()
+        DOCKER_IMAGE = "sureshmavp1/${APP_NAME}"
         DOCKER_TAG = "1.0.${BUILD_NUMBER}"
         IMAGE_TAG = "${DOCKER_IMAGE}:${DOCKER_TAG}"
         GITOPS_REPO = "https://github.com/Backstage-IDP-PoC/k8s-manifest.git" 
@@ -95,7 +95,7 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-credentials',
+                    credentialsId: 'dockerhub-credential',
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
@@ -118,7 +118,7 @@ pipeline {
                 expression { env.RUN_MODE == "cd" }
             }
             steps {
-                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                withCredentials([string(credentialsId: 'github-tokens', variable: 'GITHUB_TOKEN')]) {
                     sh '''
                     rm -rf k8s-manifest
 
