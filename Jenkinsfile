@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "".toLowerCase().trim()
+        APP_NAME = "gssp-demo-test-01-27-apr".toLowerCase().trim()
         DOCKER_IMAGE = "sureshmavp1/${APP_NAME}"
         DOCKER_TAG = "1.0.${BUILD_NUMBER}"
         IMAGE_TAG = "${DOCKER_IMAGE}:${DOCKER_TAG}"
